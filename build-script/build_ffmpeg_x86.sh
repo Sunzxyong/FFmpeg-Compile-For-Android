@@ -6,29 +6,32 @@ TOOLCHAIN=$NDK/toolchains/x86-4.9/prebuilt/darwin-x86_64
 
 CPU=x86
 PREFIX=$(pwd)/android/$CPU
+ADDI_CFLAGS=""
+ADDI_LDFLAGS=""
 
 function build_x86
 {
 ./configure \
---prefix=$PREFIX \
---enable-shared \
---disable-static \
---disable-doc \
---disable-ffmpeg \
---disable-ffplay \
---disable-ffprobe \
---disable-ffserver \
---disable-symver \
---enable-avresample \
---enable-small \
---enable-jni \
---cross-prefix=$TOOLCHAIN/bin/i686-linux-android- \
---target-os=linux \
---arch=x86 \
---enable-cross-compile \
---sysroot=$SYSROOT \
---extra-cflags="-Os -fpic" \
-$ADDITIONAL_CONFIGURE_FLAG
+    --prefix=$PREFIX \
+    --enable-shared \
+    --disable-static \
+    --disable-doc \
+    --disable-ffmpeg \
+    --disable-ffplay \
+    --disable-ffprobe \
+    --disable-ffserver \
+    --disable-symver \
+    --enable-avresample \
+    --enable-small \
+    --enable-jni \
+    --cross-prefix=$TOOLCHAIN/bin/i686-linux-android- \
+    --target-os=linux \
+    --arch=x86 \
+    --enable-cross-compile \
+    --sysroot=$SYSROOT \
+    --extra-cflags="-Os -fpic $ADDI_CFLAGS" \
+    --extra-ldflags="$ADDI_LDFLAGS" \
+    $ADDITIONAL_CONFIGURE_FLAG
 make clean
 make
 make install
