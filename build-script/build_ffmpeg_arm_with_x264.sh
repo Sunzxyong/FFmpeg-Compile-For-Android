@@ -6,7 +6,7 @@ TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64
 
 CPU=arm
 PREFIX=$(pwd)/android/$CPU
-ADDI_CFLAGS="-marm"
+ADDI_CFLAGS=""
 ADDI_LDFLAGS=""
 
 function build_arm
